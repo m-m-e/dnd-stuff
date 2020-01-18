@@ -2,7 +2,7 @@ import React from 'react';
 
 const CardList = ({ data, handleClickFunction}) =>
   <div className='cards'>
-    {data && data.map(({ name, id, hp }) => 
+    {data && data.map(({ name, id, hp, url }) => 
       <div 
         className='card'
         key={id}
@@ -11,6 +11,7 @@ const CardList = ({ data, handleClickFunction}) =>
       >
         <p>Name: {name}</p>
         <p>HP: {hp}</p>
+        {url && <img src={url} alt='creature' />}
       </div>
     )}
   </div>

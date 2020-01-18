@@ -2,7 +2,7 @@ import React from 'react'
 
 const Gameplay = () =>
 <section>
-  <h1>Gameplay</h1>
+  <h2>Gameplay</h2>
 </section>
 
 export default Gameplay;
