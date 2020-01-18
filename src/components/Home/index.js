@@ -15,8 +15,10 @@ class Home extends Component {
 
     this.handleCardClick = (event) => {
       const { id } = event.currentTarget;
-      const chosenCard = data.find(element => id === element.id.toString());
-      this.setState({ group: [...this.state.group, chosenCard]})
+      const { group } = this.state;
+      const chosenCard = {...data.find(element => id === element.id.toString())};
+      chosenCard.id = `${id}-${group.length}`;
+      this.setState({ group: [...group, chosenCard]})
     }
 
     this.handleRemoveClick = (event) => {
