@@ -1,7 +1,7 @@
 import React from 'react';
 import { Router, Link } from "@reach/router";
-import Home from './Home/Home';
-import Gameplay from './Gameplay/Gameplay';
+import Home from './Home';
+import Gameplay from './Gameplay';
 
 const App = () => {
   return (
