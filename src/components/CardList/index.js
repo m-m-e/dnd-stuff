@@ -1,6 +1,6 @@
 import React from 'react';
 
-const CardList = ({ data, handleClickFunction}) =>
+const CardList = ({ data, handleClickFunction }) =>
   <div className='cards'>
     {data && data.map(({ name, id, hp, url }) => 
       <div 

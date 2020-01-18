@@ -40,7 +40,10 @@ class Home extends Component {
           <h2 className='home_title'>Home</h2>
 
           <Search inputHandler={handleInput} inputText={inputText} />
-          <CardList data={data} handleClickFunction={handleCardClick} />
+          <CardList
+            data={data.filter(item => item.name.toLowerCase().includes(inputText.toLowerCase()))}
+            handleClickFunction={handleCardClick}
+          />
 
         </section>
         <section>
