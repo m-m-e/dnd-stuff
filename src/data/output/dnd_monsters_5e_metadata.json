@@ -1,5 +1,6 @@
 {
     "slug": "Unique slug",
+    "name": "Monster name",
     "type": "Opponent type (string)",
     "alignment": "Alignment of opponent (string)",
     "ac": "Action class (string)",

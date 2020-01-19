@@ -2,7 +2,7 @@ import React from 'react';
 
 const CardList = ({ data, handleClickFunction }) =>
   <div className='cards'>
-    {data && data.map(({ name, id, hp, url }) => 
+    {data && data.map(({ name, id, hp, img_url }) => 
       <div 
         className='card'
         key={id}
@@ -10,8 +10,8 @@ const CardList = ({ data, handleClickFunction }) =>
         id={id}
       >
         <p>Name: {name}</p>
-        <p>HP: {hp}/{hp}</p>
-        {url && <img src={url} alt='creature' />}
+        <p>HP: {hp.default} / {hp.default}</p>
+        {img_url && <img src={img_url} alt='creature' />}
       </div>
     )}
   </div>
