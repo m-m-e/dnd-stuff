@@ -10,7 +10,7 @@ const CardList = ({ data, handleClickFunction }) =>
         id={id}
       >
         <p>Name: {name}</p>
-        <p>HP: {hp}</p>
+        <p>HP: {hp}/{hp}</p>
         {url && <img src={url} alt='creature' />}
       </div>
     )}
