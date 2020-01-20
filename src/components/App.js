@@ -8,9 +8,9 @@ const App = () => {
     <div className="App">
       <nav>
       <Link to="/">Home</Link>
-      <Link to="/gameplay">Gameplay</Link>
+      <Link to="/gameplay"> | Gameplay</Link>
       </nav>
-      <h1>Dnd Stuff!</h1>
+      <h1>Dnd Fight Generator!</h1>
 
       <Router>
       <Home path="/" />

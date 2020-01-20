@@ -1,5 +1,5 @@
 import React, { Component } from 'react';
-import { data } from '../../data';
+import { data } from '../../data/output/dnd_monsters_5e.js';
 import Search from '../Search';
 import CardList from '../CardList';
 import './style.css';
@@ -54,6 +54,7 @@ class Home extends Component {
 
           <div className='button_container'>
             <Button text='Save group' handleClickFunction={()=>{}} />
+            <Button text='Select saved group' handleClickFunction={()=>{}} />
             <Button text='Start gameplay' handleClickFunction={()=>{}} />
           </div>
         </section>
