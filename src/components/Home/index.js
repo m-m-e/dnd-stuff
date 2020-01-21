@@ -4,6 +4,7 @@ import Search from '../Search';
 import CardList from '../CardList';
 import './style.css';
 import Button from '../Button';
+import { saveData } from '../../saveData.js';
 
 class Home extends Component {
   constructor() {
@@ -53,7 +54,7 @@ class Home extends Component {
           <CardList data={group} handleClickFunction={handleRemoveClick} />
 
           <div className='button_container'>
-            <Button text='Save group' handleClickFunction={()=>{}} />
+            <Button text='Save group' handleClickFunction={()=>{saveData(group)}} />
             <Button text='Select saved group' handleClickFunction={()=>{}} />
             <Button text='Start gameplay' handleClickFunction={()=>{}} />
           </div>
