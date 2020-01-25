@@ -4,13 +4,13 @@ import Search from '../Search';
 import CardList from '../CardList';
 import './style.css';
 import Button from '../Button';
-import { saveGroups, fetchGroups } from '../../localStorage';
+import { saveGroups } from '../../localStorage';
 
 class Home extends Component {
-  constructor() {
-    super();
+  constructor(props) {
+    super(props);
     this.state = {
-      groups: [],
+      groups: this.props.groups || [],
       newGroup: [],
       inputText: '',
     };
@@ -41,10 +41,11 @@ class Home extends Component {
     }
   }
 
-  componentDidMount() {
-    const groups = JSON.parse(fetchGroups()) || [];
-    this.setState({ groups });
-      // .then(data => this.setState({ groups: data }));
+  componentDidUpdate(prevProps) {
+    const { groups } = this.props;
+    if (prevProps.groups !== groups) {
+      this.setState({ groups });
+    }
   }
 
   render() {
