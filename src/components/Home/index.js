@@ -4,39 +4,52 @@ import Search from '../Search';
 import CardList from '../CardList';
 import './style.css';
 import Button from '../Button';
-import { saveData } from '../../saveData.js';
+import { saveGroups, fetchGroups } from '../../localStorage';
 
 class Home extends Component {
   constructor() {
     super();
     this.state = {
-      group: [],
+      groups: [],
+      newGroup: [],
       inputText: '',
     };
 
     this.handleCardClick = (event) => {
       const { id } = event.currentTarget;
-      const { group } = this.state;
+      const { newGroup } = this.state;
       const chosenCard = {...data.find(element => id === element.id.toString())};
-      chosenCard.id = `${id}-${group.length}`;
-      this.setState({ group: [...group, chosenCard]})
+      chosenCard.id = `${id}-${newGroup.length}`;
+      this.setState({ newGroup: [...newGroup, chosenCard]})
     }
 
     this.handleRemoveClick = (event) => {
       const { id } = event.currentTarget;
-      const { group } = this.state;
-      const newGroup = group.filter(element => id !== element.id.toString());
-      this.setState({ group: newGroup })
+      const { newGroup } = this.state;
+      const group = newGroup.filter(element => id !== element.id.toString());
+      this.setState({ newGroup: group })
     }
 
     this.handleInput = (e) => {
       this.setState({ inputText : e.currentTarget.value })
     }
+
+    this.handleSaveClick = () => {
+      const newGroupsList = [...this.state.groups, this.state.newGroup];
+      this.setState({ groups: newGroupsList, newGroup: [] });
+      saveGroups(newGroupsList);
+    }
+  }
+
+  componentDidMount() {
+    const groups = JSON.parse(fetchGroups()) || [];
+    this.setState({ groups });
+      // .then(data => this.setState({ groups: data }));
   }
 
   render() {
-    const { group, inputText } = this.state;
-    const { handleCardClick, handleRemoveClick, handleInput } = this;
+    const { newGroup, inputText } = this.state;
+    const { handleCardClick, handleRemoveClick, handleInput, handleSaveClick } = this;
     return (
       <div className='home'>
         <section className='search_section'>
@@ -51,13 +64,13 @@ class Home extends Component {
         </section>
         <section>
           <h2 className='group_section'>Group</h2>
-          <CardList data={group} handleClickFunction={handleRemoveClick} />
-
           <div className='button_container'>
-            <Button text='Save group' handleClickFunction={()=>{saveData(group)}} />
+            <Button text='Save group' handleClickFunction={handleSaveClick} />
             <Button text='Select saved group' handleClickFunction={()=>{}} />
             <Button text='Start gameplay' handleClickFunction={()=>{}} />
           </div>
+
+          <CardList data={newGroup} handleClickFunction={handleRemoveClick} />
         </section>
       </div>
     )
