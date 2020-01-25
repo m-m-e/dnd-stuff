@@ -11,7 +11,7 @@ class App extends Component {
     super(props);
     this.state = {
       groups: [],
-      selectedGroup: [],
+      selectedGroup: {},
     }
   }
 
@@ -22,7 +22,7 @@ class App extends Component {
   }
 
   render() {
-    const { groups } = this.state;
+    const { groups, selectedGroup } = this.state;
     return (
       <div className="App">
         <nav>
@@ -35,7 +35,7 @@ class App extends Component {
         <Router>
           <Home path="/" groups={groups} />
           <Groups path="/groups" groups={groups} />
-          <Gameplay path="/gameplay" />
+          <Gameplay path="/gameplay" selectedGroup={selectedGroup} />
         </Router>
       </div>
     );
