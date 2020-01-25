@@ -1,4 +1,9 @@
 .group {
-  border: 2px solid black;
+  border: 2px solid darkgrey;
   cursor: pointer;
+}
+
+.selected {
+  border: 2px solid black;
+  background: lightgrey;
 }

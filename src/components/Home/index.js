@@ -13,6 +13,7 @@ class Home extends Component {
       groups: this.props.groups || [],
       newGroup: [],
       inputText: '',
+      groupName: '',
     };
 
     this.handleCardClick = (event) => {
@@ -35,9 +36,13 @@ class Home extends Component {
     }
 
     this.handleSaveClick = () => {
-      const newGroupsList = [...this.state.groups, this.state.newGroup];
-      this.setState({ groups: newGroupsList, newGroup: [] });
+      const newGroup = { groupName: this.state.groupName, members: this.state.newGroup }
+      const newGroupsList = [...this.state.groups, newGroup];
+      this.setState({ groups: newGroupsList, newGroup: [], groupName: '' });
       saveGroups(newGroupsList);
+    }
+    this.handleNameChange = e => {
+      this.setState({ groupName: e.currentTarget.value});
     }
   }
 
@@ -49,8 +54,8 @@ class Home extends Component {
   }
 
   render() {
-    const { newGroup, inputText } = this.state;
-    const { handleCardClick, handleRemoveClick, handleInput, handleSaveClick } = this;
+    const { newGroup, inputText, groupName } = this.state;
+    const { handleCardClick, handleRemoveClick, handleInput, handleSaveClick, handleNameChange } = this;
     return (
       <div className='home'>
         <section className='search_section'>
@@ -67,11 +72,12 @@ class Home extends Component {
           <h2 className='group_section'>Group</h2>
           <div className='button_container'>
             <Button text='Save group' handleClickFunction={handleSaveClick} />
-            <Button text='Select saved group' handleClickFunction={()=>{}} />
             <Button text='Start gameplay' handleClickFunction={()=>{}} />
           </div>
 
           <CardList data={newGroup} handleClickFunction={handleRemoveClick} />
+          <label htmlFor="groupName">Group name:</label>
+          <input onChange={handleNameChange} type='text' value={groupName} name="groupName" />
         </section>
       </div>
     )
